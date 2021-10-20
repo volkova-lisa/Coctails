@@ -9,19 +9,20 @@
         android:id="@+id/splashScreenFragment"
         android:name="com.example.coctails.SplashScreenFragment"
         android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
-        <action
-            android:id="@+id/action_splashScreenFragment_to_mainScreenFragment"
-            app:destination="@id/mainScreenFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_splash_screen" />
     <fragment
-        android:id="@+id/mainScreenFragment"
-        android:name="com.example.coctails.main_screen.MainScreenFragment"
-        android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" />
+        android:id="@+id/drinksFragment"
+        android:name="com.example.coctails.main_screen.DrinksFragment"
+        android:label="fragment_drinks"
+        tools:layout="@layout/fragment_drinks" />
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.coctails.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/cocktailsFragment"
+        android:name="com.example.coctails.main_screen.CocktailsFragment"
+        android:label="fragment_cocktails"
+        tools:layout="@layout/fragment_cocktails" />
 </navigation>

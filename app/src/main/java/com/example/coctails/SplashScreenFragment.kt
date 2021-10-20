@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.coctails.databinding.FragmentSplashScreenBinding
-import com.example.coctails.main_screen.MainScreenFragment
+import com.example.coctails.main_screen.DrinksFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -28,7 +28,7 @@ class SplashScreenFragment : Fragment() {
         splashScreenScope.launch {
             delay(2000)
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.nav_host_fragment, MainScreenFragment())
+            transaction.replace(R.id.nav_host_fragment, DrinksFragment())
 
             transaction.commit()
         }
