@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.replace
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import com.example.coctails.databinding.ActivityMainBinding
 import com.example.coctails.databinding.FragmentSplashScreenBinding
 import kotlinx.coroutines.CoroutineScope
@@ -29,11 +31,14 @@ class SplashScreenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSplashScreenBinding.inflate(layoutInflater, container, false)
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
 
-//        splashScreenScope.launch {
-//            delay(2000)
-//        }
+        splashScreenScope.launch {
+            delay(2000)
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.nav_host_fragment, MainScreenFragment())
+
+            transaction.commit()
+        }
         return mBinding.root
     }
 
