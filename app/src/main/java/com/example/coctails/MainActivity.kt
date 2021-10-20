@@ -19,9 +19,18 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
+
+       // mNavController = Navigation.findNavController(this, R.id.nav_host_fragment)
+
 //        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 //        val navController = navHostFragment.navController
 //        //mNavController = Navigation.findNavController(this, R.id.nav_host_fragment)
 //        navController.navigateUp()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //это нужно чтобы избежать утечки памяти!! запомнить*
+        _binding = null
     }
 }
