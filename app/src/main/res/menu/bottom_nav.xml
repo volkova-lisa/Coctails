@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Drinks" />
-    <item android:title="Cocktails" />
+    <item android:id="@+id/cocktail_menu"
+        android:title="Cocktails"
+        android:icon="@drawable/ic_cocktails"/>
+    <item android:id="@+id/drink_menu"
+        android:title="Drinks"
+        android:icon="@drawable/ic_drink"/>
 </menu>

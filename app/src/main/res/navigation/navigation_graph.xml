@@ -18,18 +18,10 @@
         android:id="@+id/mainScreenFragment"
         android:name="com.example.coctails.main_screen.MainScreenFragment"
         android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" >
-        <action
-            android:id="@+id/action_mainScreenFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_main_screen" />
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.coctails.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
-        <action
-            android:id="@+id/action_detailsFragment_to_mainScreenFragment"
-            app:destination="@id/mainScreenFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_details" />
 </navigation>
