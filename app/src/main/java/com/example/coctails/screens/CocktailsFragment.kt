@@ -1,4 +1,4 @@
-package com.example.coctails.main_screen
+package com.example.coctails.screens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

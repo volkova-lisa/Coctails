@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.example.coctails.SplashScreenFragment"
+        android:name="com.example.coctails.screens.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" />
     <fragment
         android:id="@+id/drinksFragment"
-        android:name="com.example.coctails.main_screen.DrinksFragment"
+        android:name="com.example.coctails.screens.DrinksFragment"
         android:label="fragment_drinks"
         tools:layout="@layout/fragment_drinks" />
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.coctails.DetailsFragment"
+        android:name="com.example.coctails.screens.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
     <fragment
         android:id="@+id/cocktailsFragment"
-        android:name="com.example.coctails.main_screen.CocktailsFragment"
+        android:name="com.example.coctails.screens.CocktailsFragment"
         android:label="fragment_cocktails"
         tools:layout="@layout/fragment_cocktails" />
 </navigation>

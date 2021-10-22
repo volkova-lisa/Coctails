@@ -21,19 +21,11 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-
-        //val navController = findNavController(NavHostFragment)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         mBinding.bottomNavigatinView.setupWithNavController(navController)
 
-
-
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-//        val navController = navHostFragment.navController
-//        //mNavController = Navigation.findNavController(this, R.id.nav_host_fragment)
-//        navController.navigateUp()
     }
 
     override fun onDestroy() {

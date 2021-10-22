@@ -1,4 +1,4 @@
-package com.example.coctails.main_screen
+package com.example.coctails.screens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coctails.databinding.FragmentDrinksBinding
+import com.example.coctails.utils.DrinksAdapter
 
 class DrinksFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.example.coctails
+package com.example.coctails.screens
 
 
 import android.os.Bundle
@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.coctails.R
 import com.example.coctails.databinding.FragmentSplashScreenBinding
-import com.example.coctails.main_screen.DrinksFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

@@ -1,4 +1,4 @@
-package com.example.coctails.main_screen
+package com.example.coctails.utils
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.drink_item.view.*
 
 class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
 
-    private var mListNotes = emptyList<AppNote>()
+    private var mListNotes = emptyList<Drinks>()
 
 
     class MainHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,11 +31,11 @@ class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
     override fun getItemCount(): Int = mListNotes.size
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        holder.drinkName.text = mListNotes[position].text
-        holder.drinkDescr.text = mListNotes[position].name
+        //holder.drinkName.text = mListNotes[position].text
+       // holder.drinkDescr.text = mListNotes[position].name
     }
 
-    fun setList(list: List<AppNote>) {
+    fun setList(list: List<Drinks>) {
         mListNotes = list
         notifyDataSetChanged()
     }
