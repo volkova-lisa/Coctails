@@ -18,11 +18,6 @@ class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
         val drinkDescr: TextView = view.drink_description
     }
 
-    override fun onViewDetachedFromWindow(holder: MainHolder) {
-        holder.itemView.setOnClickListener(null)
-        super.onViewDetachedFromWindow(holder)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.drink_item, parent, false)
         return MainHolder(view)
