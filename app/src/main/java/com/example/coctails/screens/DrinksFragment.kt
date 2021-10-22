@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coctails.databinding.FragmentDrinksBinding
+import com.example.coctails.utils.Drinks
 import com.example.coctails.utils.DrinksAdapter
+import com.example.coctails.utils.DrinksResult
 
 class DrinksFragment : Fragment() {
 
@@ -24,6 +26,28 @@ class DrinksFragment : Fragment() {
 
         // Inflate the layout for this fragment
         return mBinding.root
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        initialization()
+    }
+
+    private fun initialization() {
+        mAdapter = DrinksAdapter()
+        mRecyclerView = mBinding.recyclerView
+        mRecyclerView.adapter = mAdapter
+
+        //val list = DrinksResult
+        //mAdapter.setList(list)
+    }
+
+    companion object {
+        fun click(drink: Drinks){
+            val bundle = Bundle()
+            bundle.putSerializable("drink", drink)
+        }
     }
 
 }

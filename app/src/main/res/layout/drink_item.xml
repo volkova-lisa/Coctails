@@ -28,7 +28,7 @@
             tools:text="Vodka" />
 
         <TextView
-            android:id="@+id/drink_description"
+            android:id="@+id/drink_id"
             android:textSize="16sp"
             tools:text="40 C"
             android:textColor="@color/purple_200"

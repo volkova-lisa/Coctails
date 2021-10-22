@@ -10,12 +10,13 @@ import kotlinx.android.synthetic.main.drink_item.view.*
 
 class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
 
-    private var mListNotes = emptyList<Drinks>()
+    private var mListDrinks = emptyList<Drinks>()
 
 
     class MainHolder(view: View) : RecyclerView.ViewHolder(view) {
         val drinkName: TextView = view.drink_name
-        val drinkDescr: TextView = view.drink_description
+        //val drinkImage: ImageView = view.drink_description
+        val drinkId : TextView = view.drink_id
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -23,15 +24,15 @@ class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
         return MainHolder(view)
     }
 
-    override fun getItemCount(): Int = mListNotes.size
+    override fun getItemCount(): Int = mListDrinks.size
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        //holder.drinkName.text = mListNotes[position].text
-       // holder.drinkDescr.text = mListNotes[position].name
+        holder.drinkName.text = mListDrinks[position].strDrink
+        holder.drinkId.text = mListDrinks[position].idDrink
     }
 
     fun setList(list: List<Drinks>) {
-        mListNotes = list
+        mListDrinks = list
         notifyDataSetChanged()
     }
 
