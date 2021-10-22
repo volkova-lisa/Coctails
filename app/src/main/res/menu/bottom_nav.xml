@@ -6,7 +6,4 @@
     <item android:id="@+id/drink_menu"
         android:title="Drinks"
         android:icon="@drawable/ic_drink"/>
-    <item android:id="@+id/details_menu"
-        android:title="Details"
-        android:icon="@drawable/ic_details"/>
 </menu>

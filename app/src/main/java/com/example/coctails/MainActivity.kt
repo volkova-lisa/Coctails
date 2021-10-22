@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.coctails.databinding.ActivityMainBinding
 import com.example.coctails.utils.Drinks
+import com.example.coctails.utils.DrinksAdapter
 import com.example.coctails.utils.DrinksResult
 import com.google.gson.Gson
 import retrofit2.Call

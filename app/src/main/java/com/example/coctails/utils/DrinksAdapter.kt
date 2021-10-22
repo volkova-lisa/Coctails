@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.drink_item.view.*
 
 class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
 
-    private var mListDrinks = emptyList<Drinks>()
+    private var mListDrinks = mutableListOf<Drinks>()
 
 
     class MainHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,7 +31,7 @@ class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
         holder.drinkId.text = mListDrinks[position].idDrink
     }
 
-    fun setList(list: List<Drinks>) {
+    fun setList(list: MutableList<Drinks>) {
         mListDrinks = list
         notifyDataSetChanged()
     }
