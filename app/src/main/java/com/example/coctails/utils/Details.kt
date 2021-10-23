@@ -5,6 +5,9 @@ class Details(
     var strTags:String,
     var strCategory:String,
     var strGlass:String,
-    var strInstructions:String,
-    var dateModified:String
+    val strDrinkThumb: String,
+    val strIngredient1: String,
+    val strIngredient2: String,
+    val strIngredient3: String,
+    val strInstructions: String,
 )

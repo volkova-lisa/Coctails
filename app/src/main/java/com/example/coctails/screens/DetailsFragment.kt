@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.example.coctails.JsonPlaceHolderApi
 import com.example.coctails.databinding.FragmentDetailsBinding
 import com.example.coctails.utils.DetailsResult
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_details.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -57,12 +58,15 @@ class DetailsFragment(drinkId: String?) : Fragment() {
                 //need to append in textview
                 //mBinding.detailsText.text = response.body().toString()
                 mDetailsResult = response.body()
+                Picasso.get().load(mDetailsResult!!.drinks!![0].strDrinkThumb).into(mBinding.detailsPic)
                 val info = "Name: " + mDetailsResult!!.drinks!![0].strDrink + "\n\n" +
                         "Category: " + mDetailsResult!!.drinks!![0].strCategory + "\n\n" +
+                        "Ingredient1: " + mDetailsResult!!.drinks!![0].strIngredient1 + "\n\n" +
+                        "Ingredient2: " + mDetailsResult!!.drinks!![0].strIngredient2 + "\n\n" +
+                        "Ingredient3: " + mDetailsResult!!.drinks!![0].strIngredient3 + "\n\n" +
                         "Instructions: " + mDetailsResult!!.drinks!![0].strInstructions + "\n\n" +
                         "Glass: " + mDetailsResult!!.drinks!![0].strGlass + "\n\n" +
-                        "Tags: " + mDetailsResult!!.drinks!![0].strTags + "\n\n" +
-                        "Date modified: " + mDetailsResult!!.drinks!![0].dateModified
+                        "Tags: " + mDetailsResult!!.drinks!![0].strTags + "\n\n"
                 mBinding.detailsText.text = info
             }
 
