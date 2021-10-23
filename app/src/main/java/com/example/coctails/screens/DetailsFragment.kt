@@ -26,6 +26,7 @@ class DetailsFragment(drinkId: String?) : Fragment() {
     var mDetailsResult : DetailsResult? = null
     val mDrinkId : String? = drinkId
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,7 +55,15 @@ class DetailsFragment(drinkId: String?) : Fragment() {
                     return
                 }
                 //need to append in textview
-                mBinding.detailsText.text = response.body().toString()
+                //mBinding.detailsText.text = response.body().toString()
+                mDetailsResult = response.body()
+                val info = "Name: " + mDetailsResult!!.drinks!![0].strDrink + "\n\n" +
+                        "Category: " + mDetailsResult!!.drinks!![0].strCategory + "\n\n" +
+                        "Instructions: " + mDetailsResult!!.drinks!![0].strInstructions + "\n\n" +
+                        "Glass: " + mDetailsResult!!.drinks!![0].strGlass + "\n\n" +
+                        "Tags: " + mDetailsResult!!.drinks!![0].strTags + "\n\n" +
+                        "Date modified: " + mDetailsResult!!.drinks!![0].dateModified
+                mBinding.detailsText.text = info
             }
 
             override fun onFailure(call: Call<DetailsResult?>, t: Throwable) {
