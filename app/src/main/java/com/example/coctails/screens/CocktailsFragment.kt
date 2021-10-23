@@ -6,13 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.coctails.JsonPlaceHolderApi
-import com.example.coctails.R
-import com.example.coctails.databinding.ActivityMainBinding
-import com.example.coctails.utils.DrinksResult
+import com.example.coctails.databinding.FragmentCocktailsBinding
+import com.example.coctails.utils.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,22 +18,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class CocktailsFragment : Fragment() {
 
+    private var _binding: FragmentCocktailsBinding? = null
+    val mBinding get() = _binding!!
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mAdapter: CocktailsAdapter
     private var jsonPlaceHolderApi: JsonPlaceHolderApi? = null
-    var mDrinksResult : DrinksResult? = null
+    var mCocktailsResult : CocktailsResult? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cocktails, container, false)
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        //it was step 1 here
+        _binding = FragmentCocktailsBinding.inflate(layoutInflater, container, false)
         val retrofit = Retrofit.Builder()
             .baseUrl("https://thecocktaildb.com/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -45,29 +38,50 @@ class CocktailsFragment : Fragment() {
 
         //it was step 2 here
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi::class.java)
-        getDrinks()
+        getCocktails()
+        // Inflate the layout for this fragment
+        return mBinding.root
     }
 
-    private fun getDrinks() {
-        val call: Call<DrinksResult?> = jsonPlaceHolderApi!!.getDrinks()
+    private fun getCocktails() {
+        val call: Call<CocktailsResult?> = jsonPlaceHolderApi!!.getCocktails()
 
-        call.enqueue(object : Callback<DrinksResult?> {
+        call.enqueue(object : Callback<CocktailsResult?> {
             override fun onResponse(
-                call: Call<DrinksResult?>,
-                response: Response<DrinksResult?>
+                call: Call<CocktailsResult?>,
+                response: Response<CocktailsResult?>
             ) {
                 if (!response.isSuccessful) {
                     //textViewResult.setText("Code: " + response.code())
                     return
                 }
-                mDrinksResult = response.body()
-                Log.d("-------------", "-------------" + mDrinksResult?.drinks.toString())
+                mCocktailsResult = response.body()
+                mAdapter.setList(mCocktailsResult?.drinks!!)
+                mAdapter.notifyDataSetChanged()
+                Log.d("-------------", "-------------" + mCocktailsResult?.drinks.toString())
 
             }
-
-            override fun onFailure(call: Call<DrinksResult?>, t: Throwable) {
+            override fun onFailure(call: Call<CocktailsResult?>, t: Throwable) {
                 Log.d("-------------", "++++++++++++++++++++++",t)
             }
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initialization()
+    }
+
+    private fun initialization() {
+        mAdapter = CocktailsAdapter()
+        mRecyclerView = mBinding.recyclerView
+        mRecyclerView.adapter = mAdapter
+    }
+
+    companion object {
+        fun click(drink: Drinks){
+            val bundle = Bundle()
+            bundle.putSerializable("drink", drink)
+        }
     }
 }
