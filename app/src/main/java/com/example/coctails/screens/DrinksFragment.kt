@@ -20,8 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import com.squareup.picasso.Picasso
 
 import android.R
-
-
+import com.example.coctails.utils.CocktailsAdapter
 
 
 class DrinksFragment : Fragment() {
@@ -43,12 +42,18 @@ class DrinksFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-
-        //it was step 2 here
+        mBinding.swipe.setOnRefreshListener {
+            refreshAction()                    // refresh your list contents somehow
+            mBinding.swipe.isRefreshing = false
+        }
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi::class.java)
         getDrinks()
         // Inflate the layout for this fragment
         return mBinding.root
+    }
+
+    private fun refreshAction() {
+        getDrinks()
     }
 
     private fun getDrinks() {
@@ -81,7 +86,15 @@ class DrinksFragment : Fragment() {
     }
 
     private fun initialization() {
-        mAdapter = DrinksAdapter()
+        mAdapter = DrinksAdapter(object : DrinksAdapter.ClickListener{
+            override fun onItemClick(drinkId: String?, v: View?) {
+                Log.d("hell", drinkId!!)
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .replace(com.example.coctails.R.id.nav_host_fragment, DetailsFragment(drinkId))
+                    .commit()
+            }
+        })
         mRecyclerView = mBinding.recyclerView
         mRecyclerView.adapter = mAdapter
     }

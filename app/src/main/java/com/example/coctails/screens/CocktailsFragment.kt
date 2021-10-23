@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.coctails.JsonPlaceHolderApi
 import com.example.coctails.R
 import com.example.coctails.databinding.FragmentCocktailsBinding
@@ -36,12 +37,19 @@ class CocktailsFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-
+            mBinding.swipe.setOnRefreshListener {
+                refreshAction()                    // refresh your list contents somehow
+                mBinding.swipe.isRefreshing = false
+            }
         //it was step 2 here
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi::class.java)
         getCocktails()
         // Inflate the layout for this fragment
         return mBinding.root
+    }
+
+    private fun refreshAction() {
+        getCocktails()
     }
 
     private fun getCocktails() {

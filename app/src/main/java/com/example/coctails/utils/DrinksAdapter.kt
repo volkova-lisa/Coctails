@@ -10,24 +10,28 @@ import com.example.coctails.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.drink_item.view.*
 
-class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
+class DrinksAdapter(onClickListener: ClickListener) : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
 
-    private lateinit var onDrinkClickListener : OnDrinkClickListener
+    var mOnClickListener : ClickListener? = onClickListener
     private var mListDrinks = mutableListOf<Drinks>()
 
-    interface OnDrinkClickListener{
-        fun onDrinkCLick(position : Int)
-    }
-
-    class MainHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MainHolder(view: View,onClickListener : ClickListener) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val drinkName: TextView = view.drink_name
         val drinkImage: ImageView = view.drink_pic
         val drinkId : TextView = view.drink_id
+        val _onClickListener : ClickListener = onClickListener
+
+        init{
+            view.setOnClickListener(this)
+        }
+        override fun onClick(view: View?) {
+            _onClickListener.onItemClick(mListDrinks[adapterPosition].idDrink, view)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.drink_item, parent, false)
-        return MainHolder(view)
+        return MainHolder(view, mOnClickListener!!)
     }
 
     override fun getItemCount(): Int = mListDrinks.size
@@ -47,5 +51,7 @@ class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
         notifyDataSetChanged()
     }
 
-
+    interface ClickListener {
+        fun onItemClick(drinkId: String?, v: View?)
+    }
 }

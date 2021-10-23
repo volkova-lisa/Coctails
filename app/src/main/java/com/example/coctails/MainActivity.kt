@@ -3,6 +3,7 @@ package com.example.coctails
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
@@ -20,9 +21,6 @@ import com.example.coctails.screens.DrinksFragment
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
-
-
 class MainActivity : AppCompatActivity() {
 
     lateinit var mNavController: NavController
@@ -30,8 +28,6 @@ class MainActivity : AppCompatActivity() {
     val mBinding get() = _binding!!
     private val drinksFragment = DrinksFragment()
     private val cocktailsFragment = CocktailsFragment()
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             .baseUrl("https://thecocktaildb.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+        // calling the action bar
 
         mBinding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
@@ -58,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
 
     private fun replaceFragment(fragment: Fragment) {
         if(fragment != null){
