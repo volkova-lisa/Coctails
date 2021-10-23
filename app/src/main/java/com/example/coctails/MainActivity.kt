@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var mNavController: NavController
     private var _binding: ActivityMainBinding? = null
     val mBinding get() = _binding!!
-    private var jsonPlaceHolderApi: JsonPlaceHolderApi? = null
-    var mDrinksResult : DrinksResult? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,34 +45,8 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-
-        //it was step 2 here
-        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi::class.java)
-        getDrinks()
     }
 
-    private fun getDrinks() {
-        val call: Call<DrinksResult?> = jsonPlaceHolderApi!!.getDrinks()
-
-        call.enqueue(object : Callback<DrinksResult?> {
-            override fun onResponse(
-                call: Call<DrinksResult?>,
-                response: Response<DrinksResult?>
-            ) {
-                if (!response.isSuccessful) {
-                    //textViewResult.setText("Code: " + response.code())
-                    return
-                }
-                mDrinksResult = response.body()
-                Log.d("-------------", "-------------" + mDrinksResult?.drinks.toString())
-
-            }
-
-            override fun onFailure(call: Call<DrinksResult?>, t: Throwable) {
-                Log.d("-------------", "++++++++++++++++++++++",t)
-            }
-        })
-    }
 
     override fun onDestroy() {
         super.onDestroy()
