@@ -6,24 +6,32 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.coctails.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cocktail_item.view.*
-import kotlinx.android.synthetic.main.drink_item.view.*
 
-class CocktailsAdapter : RecyclerView.Adapter<CocktailsAdapter.MainHolder>(){
+
+class CocktailsAdapter(onClickListener: ClickListener) : RecyclerView.Adapter<CocktailsAdapter.MainHolder>(){
     private var mListCocktails = mutableListOf<Cocktails>()
+    var mOnClickListener : ClickListener? = onClickListener
 
 
-    class MainHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MainHolder(view: View, onClickListener : ClickListener) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val cocktName: TextView = view.cocktail_name
         val cocktImage: ImageView = view.cocktail_pic
         val cocktId : TextView = view.cocktail_id
+        val _onClickListener : ClickListener = onClickListener
+
+        init{
+            view.setOnClickListener(this)
+        }
+        override fun onClick(view: View?) {
+            _onClickListener.onItemClick(mListCocktails[adapterPosition].idDrink, view)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.cocktail_item, parent, false)
-        return MainHolder(view)
+        val view = LayoutInflater.from(parent.context).inflate(com.example.coctails.R.layout.cocktail_item, parent, false)
+        return MainHolder(view, mOnClickListener!!)
     }
 
     override fun getItemCount(): Int = mListCocktails.size
@@ -34,12 +42,12 @@ class CocktailsAdapter : RecyclerView.Adapter<CocktailsAdapter.MainHolder>(){
         Picasso.get().load(mListCocktails[position].strDrinkThumb).into(holder.cocktImage)
     }
 
-//                val imageUri = "https://i.imgur.com/tGbaZCY.jpg"
-//                val ivBasicImage: ImageView = findViewById(R.id.ivBasicImage) as ImageView
-//                Picasso.with(context).load(imageUri).into(ivBasicImage)
-
     fun setList(list: MutableList<Cocktails>) {
         mListCocktails = list
         notifyDataSetChanged()
+    }
+
+    interface ClickListener {
+        fun onItemClick(drinkId: String?, v: View?)
     }
 }

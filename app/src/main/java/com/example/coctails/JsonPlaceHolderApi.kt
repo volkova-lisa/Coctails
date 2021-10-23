@@ -16,6 +16,6 @@ interface JsonPlaceHolderApi {
     @GET("/api/json/v1/1/filter.php?c=Cocktail")
     fun getCocktails(): Call<CocktailsResult?>
 
-    @GET("api/json/v1/{API_KEY}/lookup.php")
+    @GET("api/json/v1/1/lookup.php")
     fun getDetails(@Query("i")id:String) : Call<DetailsResult>
 }

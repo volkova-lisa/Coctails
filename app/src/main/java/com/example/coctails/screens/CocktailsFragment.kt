@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coctails.JsonPlaceHolderApi
+import com.example.coctails.R
 import com.example.coctails.databinding.FragmentCocktailsBinding
 import com.example.coctails.utils.*
 import retrofit2.Call
@@ -73,7 +74,15 @@ class CocktailsFragment : Fragment() {
     }
 
     private fun initialization() {
-        mAdapter = CocktailsAdapter()
+        mAdapter = CocktailsAdapter(object : CocktailsAdapter.ClickListener {
+            override fun onItemClick(drinkId: String?, v: View?) {
+                Log.d("hell", drinkId!!)
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.nav_host_fragment, DetailsFragment(drinkId))
+                    .commit()
+            }
+        })
         mRecyclerView = mBinding.recyclerView
         mRecyclerView.adapter = mAdapter
     }
