@@ -29,7 +29,6 @@ class SplashScreenFragment : Fragment() {
             delay(2000)
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.nav_host_fragment, DrinksFragment())
-
             transaction.commit()
         }
         return mBinding.root

@@ -12,8 +12,12 @@ import kotlinx.android.synthetic.main.drink_item.view.*
 
 class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
 
+    private lateinit var onDrinkClickListener : OnDrinkClickListener
     private var mListDrinks = mutableListOf<Drinks>()
 
+    interface OnDrinkClickListener{
+        fun onDrinkCLick(position : Int)
+    }
 
     class MainHolder(view: View) : RecyclerView.ViewHolder(view) {
         val drinkName: TextView = view.drink_name
@@ -42,5 +46,6 @@ class DrinksAdapter : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
         mListDrinks = list
         notifyDataSetChanged()
     }
+
 
 }

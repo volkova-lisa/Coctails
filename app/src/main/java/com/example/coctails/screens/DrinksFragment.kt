@@ -86,11 +86,10 @@ class DrinksFragment : Fragment() {
         mRecyclerView.adapter = mAdapter
     }
 
-    companion object {
-        fun click(drink: Drinks){
-            val bundle = Bundle()
-            bundle.putSerializable("drink", drink)
-        }
-    }
-
+//    override fun onDrinkClick(position: Int) {
+//        val currPos = mDrinksResult!!.drinks!![position]
+//        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+//        transaction.replace(com.example.coctails.R.id.nav_host_fragment, DetailsFragment())
+//        transaction.commit()
+//    }
 }
