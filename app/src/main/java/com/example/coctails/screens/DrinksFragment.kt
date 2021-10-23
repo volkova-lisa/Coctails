@@ -17,6 +17,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.squareup.picasso.Picasso
+
+import android.R
+
+
+
 
 class DrinksFragment : Fragment() {
 
@@ -61,6 +67,7 @@ class DrinksFragment : Fragment() {
                 mAdapter.setList(mDrinksResult?.drinks!!)
                 mAdapter.notifyDataSetChanged()
                 Log.d("-------------", "-------------" + mDrinksResult?.drinks.toString())
+
             }
             override fun onFailure(call: Call<DrinksResult?>, t: Throwable) {
                 Log.d("-------------", "++++++++++++++++++++++",t)

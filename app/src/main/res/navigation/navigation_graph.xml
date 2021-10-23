@@ -14,15 +14,30 @@
         android:id="@+id/drinksFragment"
         android:name="com.example.coctails.screens.DrinksFragment"
         android:label="fragment_drinks"
-        tools:layout="@layout/fragment_drinks" />
+        tools:layout="@layout/fragment_drinks" >
+        <action
+            android:id="@+id/action_drinksFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.coctails.screens.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_cocktailsFragment"
+            app:destination="@id/cocktailsFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_drinksFragment"
+            app:destination="@id/drinksFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cocktailsFragment"
         android:name="com.example.coctails.screens.CocktailsFragment"
         android:label="fragment_cocktails"
-        tools:layout="@layout/fragment_cocktails" />
+        tools:layout="@layout/fragment_cocktails" >
+        <action
+            android:id="@+id/action_cocktailsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 </navigation>
