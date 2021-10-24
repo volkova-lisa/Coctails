@@ -15,7 +15,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 import androidx.annotation.NonNull
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.coctails.screens.CocktailsFragment
 import com.example.coctails.screens.DrinksFragment
 
@@ -38,7 +41,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         mBinding.bottomNavigationView.setupWithNavController(navController)
-
 
         //it was step 1 here
         val retrofit = Retrofit.Builder()
@@ -64,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

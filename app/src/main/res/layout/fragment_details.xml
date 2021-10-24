@@ -11,7 +11,17 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:elevation="4dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/details_pic"
+        android:textStyle="italic"
+        android:text="Order"
+        android:focusable="true"
+        android:clickable="true"/>
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -23,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="" />
+
     </ScrollView>
 
 </RelativeLayout>
