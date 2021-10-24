@@ -8,11 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cocktail_item.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class CocktailsAdapter(onClickListener: ClickListener) : RecyclerView.Adapter<CocktailsAdapter.MainHolder>(){
     private var mListCocktails = mutableListOf<Cocktails>()
     var mOnClickListener : ClickListener? = onClickListener
+    val itemClickScope = CoroutineScope(Dispatchers.Main)
+
 
 
     inner class MainHolder(view: View, onClickListener : ClickListener) : RecyclerView.ViewHolder(view), View.OnClickListener {
@@ -25,7 +31,10 @@ class CocktailsAdapter(onClickListener: ClickListener) : RecyclerView.Adapter<Co
             view.setOnClickListener(this)
         }
         override fun onClick(view: View?) {
-            _onClickListener.onItemClick(mListCocktails[adapterPosition].idDrink, view)
+            itemClickScope.launch {
+                delay(200)
+                _onClickListener.onItemClick(mListCocktails[adapterPosition].idDrink, view)
+            }
         }
     }
 

@@ -7,13 +7,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coctails.R
+import com.example.coctails.screens.DrinksFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.drink_item.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class DrinksAdapter(onClickListener: ClickListener) : RecyclerView.Adapter<DrinksAdapter.MainHolder>() {
 
     var mOnClickListener : ClickListener? = onClickListener
     private var mListDrinks = mutableListOf<Drinks>()
+    val itemClickScope = CoroutineScope(Dispatchers.Main)
 
     inner class MainHolder(view: View,onClickListener : ClickListener) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val drinkName: TextView = view.drink_name
@@ -25,7 +31,10 @@ class DrinksAdapter(onClickListener: ClickListener) : RecyclerView.Adapter<Drink
             view.setOnClickListener(this)
         }
         override fun onClick(view: View?) {
-            _onClickListener.onItemClick(mListDrinks[adapterPosition].idDrink, view)
+            itemClickScope.launch {
+                delay(200)
+                _onClickListener.onItemClick(mListDrinks[adapterPosition].idDrink, view)
+            }
         }
     }
 

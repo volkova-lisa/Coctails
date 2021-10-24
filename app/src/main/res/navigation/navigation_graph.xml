@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_detailsFragment_to_drinksFragment"
             app:destination="@id/drinksFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_drinksFragment2"
+            app:popUpTo="@id/drinksFragment" />
     </fragment>
     <fragment
         android:id="@+id/cocktailsFragment"

@@ -48,7 +48,6 @@ class DrinksFragment : Fragment() {
         }
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi::class.java)
         getDrinks()
-        // Inflate the layout for this fragment
         return mBinding.root
     }
 
