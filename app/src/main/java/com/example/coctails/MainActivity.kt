@@ -3,30 +3,34 @@ package com.example.coctails
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.coctails.databinding.ActivityMainBinding
-import com.example.coctails.utils.Drinks
-import com.example.coctails.utils.DrinksResult
-import com.google.gson.Gson
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
+
+import androidx.annotation.NonNull
+import androidx.appcompat.app.ActionBar
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.example.coctails.screens.CocktailsFragment
+import com.example.coctails.screens.DrinksFragment
+
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var mNavController: NavController
     private var _binding: ActivityMainBinding? = null
     val mBinding get() = _binding!!
-    private var jsonPlaceHolderApi: JsonPlaceHolderApi? = null
-    var mDrinksResult : DrinksResult? = null
-
+    private val drinksFragment = DrinksFragment()
+    private val cocktailsFragment = CocktailsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,43 +40,33 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController: NavController = navHostFragment.navController
-        mBinding.bottomNavigatinView.setupWithNavController(navController)
-
+        mBinding.bottomNavigationView.setupWithNavController(navController)
 
         //it was step 1 here
         val retrofit = Retrofit.Builder()
             .baseUrl("https://thecocktaildb.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+        // calling the action bar
 
-
-        //it was step 2 here
-        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi::class.java)
-        getDrinks()
+        mBinding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.drink_menu -> replaceFragment(drinksFragment)
+                R.id.cocktail_menu -> replaceFragment(cocktailsFragment)
+            }
+            true
+        }
     }
 
-    private fun getDrinks() {
-        val call: Call<DrinksResult?> = jsonPlaceHolderApi!!.getDrinks()
 
-        call.enqueue(object : Callback<DrinksResult?> {
-            override fun onResponse(
-                call: Call<DrinksResult?>,
-                response: Response<DrinksResult?>
-            ) {
-                if (!response.isSuccessful) {
-                    //textViewResult.setText("Code: " + response.code())
-                    return
-                }
-                mDrinksResult = response.body()
-                Log.d("-------------", "-------------" + mDrinksResult?.drinks.toString())
-
-            }
-
-            override fun onFailure(call: Call<DrinksResult?>, t: Throwable) {
-                Log.d("-------------", "++++++++++++++++++++++",t)
-            }
-        })
+    private fun replaceFragment(fragment: Fragment) {
+        if(fragment != null){
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.nav_host_fragment, fragment)
+            transaction.commit()
+        }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

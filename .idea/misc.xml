@@ -6,10 +6,13 @@
         <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/drawable/ic_cocktails.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/drawable/ic_drink.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/layout/activity_main.xml" value="0.2436923148431724" />
+        <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/layout/cocktail_item.xml" value="0.2436923148431724" />
         <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/layout/drink_item.xml" value="0.1828125" />
+        <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/layout/fragment_cocktails.xml" value="0.18461539003270633" />
         <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/layout/fragment_details.xml" value="0.1828125" />
+        <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/layout/fragment_drinks.xml" value="0.16614583333333333" />
         <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/layout/fragment_main_screen.xml" value="0.20572916666666666" />
-        <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/layout/fragment_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/layout/fragment_splash_screen.xml" value="0.2436923148431724" />
         <entry key="..\:/Users/stepa/AndroidStudioProjects/Coctails/app/src/main/res/menu/bottom_nav.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.30512820512820515" />
